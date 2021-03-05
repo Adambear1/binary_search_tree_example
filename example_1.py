@@ -45,10 +45,12 @@ class Node:
         
         if self.left:
             self.left.getNodesAtDepth(depth-1,nodes)
-            return nodes
+        else:
+            nodes.extend([None]*2**(depth-1))
         if self.right:
             self.right.getNodesAtDepth(depth -1 , nodes)
-            return nodes
+        else:
+            nodes.extend([None]*2**(depth-1))
 
     def height(self, h=0):
         leftHeight = self.left.height(h+1) if self.left else h
