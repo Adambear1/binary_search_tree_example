@@ -38,6 +38,22 @@ class Node:
             self.right.traversePreorder()
             print(self.data)
 
+    def getNodesAtDepth(self, depth, nodes=[]):
+        if depth == 0:
+            nodes.append(self.data)
+            return nodes
+        
+        if self.left:
+            self.left.getNodesAtDepth(depth-1,nodes)
+            return nodes
+        if self.right:
+            self.right.getNodesAtDepth(depth -1 , nodes)
+            return nodes
+
+    def height(self, h=0):
+        leftHeight = self.left.height(h+1) if self.left else h
+        rightHeight = self.right.height(h+1) if self.right else h
+        return max(leftHeight, rigthHeight)
 
 
 
@@ -78,5 +94,7 @@ found = newTree.root.search(20)
 # print(found.data)
 
 # newTree.traverseInorder()
-newTree.traversePostorder()
+# newTree.traversePostorder()
 # newTree.traversePreorder()
+
+print(newTree.root.height)
